@@ -1,0 +1,18 @@
+
+install.packages("readr")
+install.packages("vroom")
+install.packages("stringr")
+
+library(readr)
+library(vroom)
+library(stringr)
+
+
+temp <- tempfile()
+download.file("https://github.com/GabrielMalatesta/aval_pol_pub/raw/main/PNAD_COVID_112020.zip",temp)
+pnad_raw <- vroom(unz(temp, "PNAD_COVID_112020.csv"))
+unlink(temp)
+
+meses = c("05","06","07","08","09","10","11")
+
+df <- data.frame(str_c(pnad_raw$UPA, pnad_raw$V1008))
