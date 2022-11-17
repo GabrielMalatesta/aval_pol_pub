@@ -15,4 +15,13 @@ unlink(temp)
 
 meses = c("05","06","07","08","09","10","11")
 
-df <- data.frame(str_c(pnad_raw$UPA, pnad_raw$V1008))
+df <- cbind(data.frame(str_c(pnad_raw$UPA, 
+                             pnad_raw$V1008)), 
+            data.frame(str_c(pnad_raw$UPA, 
+                             pnad_raw$V1008, 
+                             pnad_raw$A001B1, 
+                             pnad_raw$A001B2, 
+                             pnad_raw$A001B3,
+                             pnad_raw$A003)))
+
+colnames(df) <- c("id_dom", "id_ind)
